@@ -1,0 +1,91 @@
+
+# Notes to yourself
+# Git Submodules Setup Tutorial
+
+Goal: Create a parent project repository that has multiple submodules, each being a separate Git repository.
+
+Here's a complete step-by-step guide to set up your Python project with submodules and work with them.
+NOTE:  The assumption is that an existing parent repository is created 
+  i.e.  github.com/knotnull/python_projects 
+
+
+Part 1: Initial Setup and Creating Submodules
+
+Step 1: Navigate to your existing parent repository, that you git cloned already:
+     cd ~/archive/dev && git clone https://github.com/knotknull/python_projects.git
+
+cd ~/archive/dev/python_projects
+
+
+Step 2: Create GitHub repositories for each submodule
+Create these repositories on GitHub under your knotknull account:
+
+snippy
+pythy
+python_beyond_basics
+python_beyond_script
+
+
+Step 3: Create local directories and initialize submodules
+
+create repositories locally and push to github 
+
+# Create and initialize snippy
+mkdir snippy
+cd snippy
+git init
+echo "# snippy: Python snippets" > README.md
+echo "Snippy: Python snippets"   >> README.md
+echo "__pycache__/" > .gitignore
+echo "*.pyc" >> .gitignore
+echo "venv/" >> .gitignore
+git add .
+git commit -m "Initial commit for snippy"
+git push 
+
+etc. for pythy, python_beyond_basics, python_beyond_script
+
+
+
+Step 4: Remove local directories and add as submodules
+
+# Remove the local directories (we'll re-add them as submodules)
+rm -rf snippy pythy python_beyond_basics python_beyond_script 
+
+# Add each repository as a submodule
+git submodule add https://github.com/knotknull/snippy.git snippy
+git submodule add https://github.com/knotknull/pythy.git pythy
+git submodule add https://github.com/knotknull/python_beyond_basics.git python_beyond_basics
+git submodule add https://github.com/knotknull/python_beyond_script.git python_beyond_script
+
+
+Step 5: Create parent repository structure and commit
+
+
+# Create a main README for the parent project
+cat > README.md << 'EOF'
+# Python Projects
+
+This repository contains multiple independent Python projects as Git submodules.
+
+## Projects
+
+- **snippy**: Description of project 1
+- **pythy** : Description of project 2  
+- **python_beyond_basics **: Python Beyond the Basics course
+- **python_beyond_script **: Python Beyond Script
+
+
+echo "#python_beyond_script" > README.md
+## Getting Started
+
+To clone this repository with all submodules:
+```bash
+git clone --recurse-submodules https://github.com/newtnull/python_projects.git
+
+To update all submodules to their latest commits:
+
+```bash
+git submodule update --remote
+
+EOF
