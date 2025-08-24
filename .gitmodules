@@ -1,0 +1,12 @@
+[submodule "pythy"]
+	path = pythy
+	url = https://github.com/knotknull/pythy.git
+[submodule "snippy"]
+	path = snippy
+	url = https://github.com/knotknull/snippy.git
+[submodule "python_beyond_basics"]
+	path = python_beyond_basics
+	url = https://github.com/knotknull/python_beyond_basics.git
+[submodule "python_beyond_script"]
+	path = python_beyond_script
+	url = https://github.com/knotknull/python_beyond_script.git
